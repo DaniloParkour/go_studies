@@ -9,6 +9,17 @@ type Account struct {
 	balance    float32
 }
 
+// With (c *Account) we're implementin a function that the structs Account can call
+func (c *Account) withdrawn(value float32) string {
+	canWithdrawn := value <= c.balance
+	if canWithdrawn {
+		c.balance -= value
+		return "Withdrawn With SUCCSESS"
+	} else {
+		return "Balance Not Enough"
+	}
+}
+
 func main() {
 
 	account1 := Account{owner: "Danilo", numAgence: 589, numAccount: 123456, balance: 125.50}
@@ -52,5 +63,7 @@ func main() {
 	fmt.Println(&account5)
 	fmt.Println(&account6)
 	fmt.Println("\nNow we keep working with 2 diffentent refference address with the same values on fields but now we're comparing values on each addres. Is equals =", *account5 == *account6)
+
+	fmt.Println(account1.withdrawn(45.))
 
 }
