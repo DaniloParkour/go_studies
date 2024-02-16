@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Account struct {
 	owner      string
@@ -10,14 +12,22 @@ type Account struct {
 }
 
 // With (c *Account) we're implementin a function that the structs Account can call
-func (c *Account) withdrawn(value float32) string {
-	canWithdrawn := value > 0 && value <= c.balance
+func (a *Account) withdrawn(value float32) string {
+	canWithdrawn := value > 0 && value <= a.balance
 	if canWithdrawn {
-		c.balance -= value
+		a.balance -= value
 		return "Withdrawn With SUCCSESS"
 	} else {
 		return "Invalid Value Or Balance Not Enough"
 	}
+}
+
+func (a *Account) deposit(value float32) (string, float32) {
+	if value > 0 {
+		a.balance += value
+		return "Deposit SUCCESS. Result balance is", a.balance
+	}
+	return "Value can't be negative. Balance keep", a.balance
 }
 
 func main() {
@@ -65,5 +75,9 @@ func main() {
 	fmt.Println("\nNow we keep working with 2 diffentent refference address with the same values on fields but now we're comparing values on each addres. Is equals =", *account5 == *account6)
 
 	fmt.Println(account1.withdrawn(45.))
+
+	fmt.Println("\nNow We Use A Deposit Function That Returns 2 Values")
+	message, value := account2.deposit(250)
+	fmt.Println(message, value)
 
 }
