@@ -30,6 +30,15 @@ func (a *Account) deposit(value float32) (string, float32) {
 	return "Value can't be negative. Balance keep", a.balance
 }
 
+func (fromAccount *Account) transfer(value float32, toAccount *Account) string {
+	if value > 0 && fromAccount.balance >= value {
+		fromAccount.withdrawn(value)
+		toAccount.deposit(value)
+		return "SUCCESS!"
+	}
+	return "ERROR!"
+}
+
 func main() {
 
 	account1 := Account{owner: "Danilo", numAgence: 589, numAccount: 123456, balance: 125.50}
@@ -79,5 +88,14 @@ func main() {
 	fmt.Println("\nNow We Use A Deposit Function That Returns 2 Values")
 	message, value := account2.deposit(250)
 	fmt.Println(message, value)
+
+	fmt.Println("\nFunction Transfer")
+	fmt.Println("Balance account 1 is ", account1.balance)
+	fmt.Println("Balance account 2 is ", account2.balance)
+	fmt.Println("Transfer 400 from account 2 to account 1")
+	fmt.Println("\n\n", account2.transfer(400, &account1))
+	fmt.Println("\nNew balance of account are")
+	fmt.Println("Balance account 1 is ", account1.balance)
+	fmt.Println("Balance account 2 is ", account2.balance)
 
 }
