@@ -11,12 +11,12 @@ type Account struct {
 
 // With (c *Account) we're implementin a function that the structs Account can call
 func (c *Account) withdrawn(value float32) string {
-	canWithdrawn := value <= c.balance
+	canWithdrawn := value > 0 && value <= c.balance
 	if canWithdrawn {
 		c.balance -= value
 		return "Withdrawn With SUCCSESS"
 	} else {
-		return "Balance Not Enough"
+		return "Invalid Value Or Balance Not Enough"
 	}
 }
 
