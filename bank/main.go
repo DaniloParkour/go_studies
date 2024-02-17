@@ -69,4 +69,11 @@ func main() {
 	fmt.Println("Balance account 1 is ", account1.GetBalance())
 	fmt.Println("Balance account 2 is ", account2.GetBalance())
 
+	fmt.Println("\n\n.................................Savings Accounts.................................")
+	owner := clients.Owner{Name: "José Saving Account", CPF: "123.123.321-22", Profession: "Developer"}
+	savinsAccount := accounts.SavingsAccount{Owner: owner, NumAgence: 1234, NumAccount: 876123, Operation: 51}
+	savinsAccount.Deposit(10000)
+	savinsAccount.Withdrawn(800)
+	fmt.Println(savinsAccount.GetBalance())
+
 }
