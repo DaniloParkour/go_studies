@@ -8,7 +8,8 @@ import (
 
 func main() {
 
-	account1 := accounts.Account{Owner: clients.Owner{Name: "Danilo", CPF: "111.222.333-44", Profession: "Engenheiro de Software"}, NumAgence: 589, NumAccount: 123456, Balance: 125.50}
+	account1 := accounts.Account{Owner: clients.Owner{Name: "Danilo", CPF: "111.222.333-44", Profession: "Engenheiro de Software"}, NumAgence: 589, NumAccount: 123456}
+	account1.Deposit(125.50)
 	fmt.Println("\n", account1)
 
 	var account2 *accounts.Account
@@ -16,14 +17,17 @@ func main() {
 	account2.Owner = clients.Owner{Name: "Cris", CPF: "111.222.333-44", Profession: "Engenheiro de Software"}
 	account2.NumAccount = 112233
 	account2.NumAgence = 5090
-	account2.Balance = 9600.75
+	account2.Deposit(9600.75)
 
 	fmt.Println("\nShow account2: first var value and the second is the content of pointer")
 	fmt.Println(account2)
 	fmt.Println(*account2)
 
-	account3 := accounts.Account{Owner: clients.Owner{Name: "Cris", CPF: "555.777.777-88", Profession: "UI/UX Designer"}, NumAgence: 589, NumAccount: 123456, Balance: 125500.50}
-	account4 := accounts.Account{Owner: clients.Owner{Name: "Heitor", CPF: "999.999.999-00", Profession: "Estudante"}, NumAgence: 589, NumAccount: 123456, Balance: 125500.50}
+	account3 := accounts.Account{Owner: clients.Owner{Name: "Cris", CPF: "555.777.777-88", Profession: "UI/UX Designer"}, NumAgence: 589, NumAccount: 123456}
+	account3.Deposit(125500.50)
+	account4 := accounts.Account{Owner: clients.Owner{Name: "Heitor", CPF: "999.999.999-00", Profession: "Estudante"}, NumAgence: 589, NumAccount: 123456}
+	account4.Deposit(125500.50)
+
 	fmt.Println("\nWe working with values and they're has the same values. Is equals =", account3 == account4)
 	account4.Owner = clients.Owner{Name: "Heitor Vidal", CPF: "111.222.333-44", Profession: "Engenheiro de Software"}
 	fmt.Println("\nWe working with values and they're has one different valuee. Is equals =", account3 == account4)
@@ -37,12 +41,12 @@ func main() {
 	account5.Owner = clients.Owner{Name: "Helena", CPF: "111.222.333-44", Profession: "Engenheiro de Software"}
 	account5.NumAccount = 112233
 	account5.NumAgence = 5090
-	account5.Balance = 9600.75
+	account5.Deposit(9600.75)
 
 	account6.Owner = clients.Owner{Name: "Helena", CPF: "111.222.333-44", Profession: "Engenheiro de Software"}
 	account6.NumAccount = 112233
 	account6.NumAgence = 5090
-	account6.Balance = 9600.75
+	account6.Deposit(9600.75)
 
 	fmt.Println("\nWe working with reffecrence address and they're has the same values on fields but we're comparing the refference address and the're differente. Is equals =", account5 == account6)
 	fmt.Println("\nCheck below the addres of account5 and account6.")
@@ -57,12 +61,12 @@ func main() {
 	fmt.Println(message, value)
 
 	fmt.Println("\nFunction Transfer")
-	fmt.Println("Balance account 1 is ", account1.Balance)
-	fmt.Println("Balance account 2 is ", account2.Balance)
+	fmt.Println("Balance account 1 is ", account1.GetBalance())
+	fmt.Println("Balance account 2 is ", account2.GetBalance())
 	fmt.Println("Transfer 400 from account 2 to account 1")
 	fmt.Println("\n\n", account2.Transfer(400, &account1))
 	fmt.Println("\nNew Balance of account are")
-	fmt.Println("Balance account 1 is ", account1.Balance)
-	fmt.Println("Balance account 2 is ", account2.Balance)
+	fmt.Println("Balance account 1 is ", account1.GetBalance())
+	fmt.Println("Balance account 2 is ", account2.GetBalance())
 
 }
