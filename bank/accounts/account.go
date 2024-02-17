@@ -1,8 +1,10 @@
 package accounts
 
+import "my_projects/alura/studies/bank/clients"
+
 type Account struct {
 	//Upcase First Letter For Public Visibility
-	Owner      string
+	Owner      clients.Owner
 	NumAgence  int
 	NumAccount int
 	Balance    float32
